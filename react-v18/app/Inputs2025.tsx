@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import { VALUES } from './page'
-import { Input } from './Input'
+import { useMemo, useState } from 'react'
+import { MONTH, VALUES } from '@/constant'
+import Cell from './components/Cell'
+import { Input } from './components/Input'
 
-export const Inputs2025 = (props: { month: number[] }) => {
+export const Inputs2025 = () => {
   const [values2025, setValues2025] = useState(VALUES[2])
   const handleChange2025 = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -21,10 +22,21 @@ export const Inputs2025 = (props: { month: number[] }) => {
 
     setValues2025(newValues)
   }
+
+  // const totalValue = values2025.reduce((a, value2025) => a + value2025.value, 0)
+
+  const memolizedTotalValue = useMemo(
+    () => values2025.reduce((a, values2025) => a + values2025.value, 0),
+    [values2025]
+  )
+
   return (
-    <div className='flex' key='2025'>
-      <div className='border-gray-300 border px-3 size-9 w-32'>2025年child</div>
-      {props.month.map((m) => {
+    <>
+      <Cell text='2025年child' isWiderColumn />
+      {/* <Cell text={totalValue} /> */}
+      <Cell text={memolizedTotalValue} />
+
+      {MONTH.map((m) => {
         const v = values2025.find((v) => v.key === `2025-${m}`)
         return (
           <Input
@@ -33,10 +45,9 @@ export const Inputs2025 = (props: { month: number[] }) => {
             key={`2025-${m}`}
             value={v?.value}
             onChange={(e) => handleChange2025(e, `2025-${m}`)}
-            className='border-gray-300 border px-3 size-9 w-20'
           />
         )
       })}
-    </div>
+    </>
   )
 }

@@ -1,8 +1,9 @@
 import { memo, useState } from 'react'
-import { VALUES } from './page'
-import { Input } from './Input'
+import { Input } from './components/Input'
+import { MONTH, VALUES } from '@/constant'
+import Cell from './components/Cell'
 
-export const Inputs2024 = (props: { month: number[] }) => {
+export const Inputs2024 = () => {
   const [values2024, setValues2024] = useState(VALUES[1])
   const handleChange2024 = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -21,10 +22,15 @@ export const Inputs2024 = (props: { month: number[] }) => {
 
     setValues2024(newValues)
   }
+
+  const totalValue = values2024.reduce((a, value2024) => a + value2024.value, 0)
+
   return (
-    <div className='flex' key='2024'>
-      <div className='border-gray-300 border px-3 size-9 w-32'>2024年memo</div>
-      {props.month.map((m) => {
+    <>
+      <Cell text='2024年memo' isWiderColumn />
+      <Cell text={totalValue} />
+
+      {MONTH.map((m) => {
         const v = values2024.find((v) => v.key === `2024-${m}`)
         return (
           <Input
@@ -33,11 +39,10 @@ export const Inputs2024 = (props: { month: number[] }) => {
             key={`2024-${m}`}
             value={v?.value}
             onChange={(e) => handleChange2024(e, `2024-${m}`)}
-            className='border-gray-300 border px-3 size-9 w-20'
           />
         )
       })}
-    </div>
+    </>
   )
 }
 
