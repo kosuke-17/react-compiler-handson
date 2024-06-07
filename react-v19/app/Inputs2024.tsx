@@ -4,6 +4,7 @@ import { MONTH, VALUES } from '@/constant'
 import Cell from './components/Cell'
 
 export const Inputs2024 = () => {
+  // "use memo"
   const [values2024, setValues2024] = useState(VALUES[1])
   const handleChange2024 = (
     e: React.ChangeEvent<HTMLInputElement>,

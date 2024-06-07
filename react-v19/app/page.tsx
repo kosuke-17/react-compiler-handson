@@ -6,7 +6,7 @@ import { MONTH, VALUES } from '@/constant'
 import Cell from './components/Cell'
 import Header from './components/Header'
 import { Input } from './components/Input'
-import { Inputs2024, MemolizedInputs2024 } from './Inputs2024'
+import { Inputs2024 } from './Inputs2024'
 import { Inputs2025 } from './Inputs2025'
 import Row from './components/Row'
 import Rows from './components/Rows'
@@ -18,6 +18,7 @@ import Main from './components/Main'
 import Toggle from './components/Toggle'
 
 export default function App() {
+  'use memo'
   const [values2023, setValues2023] = useState(VALUES[0])
   const [isApproval, setIsApproval] = useState(false)
 

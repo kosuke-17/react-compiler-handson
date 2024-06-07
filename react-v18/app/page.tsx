@@ -76,8 +76,8 @@ export default function App() {
             </Row>
 
             <Row key='2024'>
-              {/* <Inputs2024 /> */}
-              <MemolizedInputs2024 />
+              <Inputs2024 />
+              {/* <MemolizedInputs2024 /> */}
             </Row>
 
             <Row key='2025'>
